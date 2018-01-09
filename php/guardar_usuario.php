@@ -29,5 +29,3 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
 	echo json_encode($returnJs);
 	$conn->close();
 }
-
-

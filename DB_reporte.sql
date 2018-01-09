@@ -44,7 +44,7 @@ CREATE TABLE `adjunto` (
   `archivo_tipo` varchar(25) NOT NULL default '',
   `activo` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`pk_adjunto`),
-  KEY `fk_puesto` (`fk_puesto`),
+  KEY `fk_actividad` (`fk_actividad`),
   CONSTRAINT `adjunto_actividad` FOREIGN KEY (`fk_actividad`) REFERENCES `actividad` (`pk_actividad`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -64,3 +64,9 @@ CREATE TABLE `hora_act` (
   CONSTRAINT `hora_act_actividad` FOREIGN KEY (`fk_actividad`) REFERENCES `actividad` (`pk_actividad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `hora_act_calatolo_act` FOREIGN KEY (`fk_catalogo_act`) REFERENCES `catalogo_act` (`pk_catalogo_act`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE USER 'reporte_actividad'@'localhost' IDENTIFIED BY 'm3d1c0S0ft';
+
+GRANT ALL PRIVILEGES ON reporte.* TO 'reporte_actividad'@'localhost';
+
+FLUSH PRIVILEGES;
