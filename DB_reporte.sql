@@ -16,7 +16,8 @@ use reporte;
   `fecha_modificación` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `activo` tinyint(4) NOT NULL DEFAULT '1',
   `es_administrador` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`pk_usuario`)
+  PRIMARY KEY (`pk_usuario`),
+  UNIQUE KEY `correo` (`correo_electronico`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `actividad` (

@@ -27,6 +27,15 @@ $(function(){
 			}).done(function(respuesta){
 				
 				 console.log(respuesta);
+				  if(respuesta.registrado == true){
+					 
+					window.location.replace("visor_general_reporte.php");
+					
+				 } else {
+					 
+					 alert("El usuario o contrase\u00F1a incorrectos");
+					 $("#contrasena").val('');
+				 }
 			}).fail(function(){
 				
 				alert("Funcionalidad no desponible por el momento, intente m\u00E1s tarde");
