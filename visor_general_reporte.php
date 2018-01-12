@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if (!isset($_SESSION["tipo"]) && !isset($_SESSION["usuario"])) {
+    header("Location: index.html"); /* Redirect browser */
+	echo "entro";
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,62 +23,90 @@
 </head>
 <body>
 	<div class="container centrado">
-		<div class="starter-template" style="text-align:center">
-		<br>
-		<div class="tab-content">
-			<div id="resultados" class="tab-pane fade in active">
-				<div class="centrado">
-					<form  id="form-send">
-						<div class="panel panel-default" style="width: 50%; margin: 0 auto; ">
-							<div class="form-group" style="margin-bottom:0px">
-								<div class="panel panel-body" style="margin-bottom: 0px;">
-									
-										<br>
-								   <h4 style="margin-top: 0px;">
-									   <label class="radio-inline"><input type="radio" name="general" id="checked" value="0" checked>Por unidad</label>
-									   <label class="radio-inline"><input type="radio" name="general" value="1" >General</label>
-								   </h4>
-									<div id="ocultar">
-										<select id="unidad" data-width="100%" class="selectpicker" data-live-search="true" title='Unidades..'>
+	
+	<nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation" style="background:rgb(44,111,160);">
+    <div class="container-fluid">
+        <div class="navbar-header" style="width:20%;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
 
-										</select>
-									</div>
+            </button>
 
-										<button id="actualiza" type="button" class="btn btn-warning" style="display:none"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Modificar prioridades</button>
-										<div id="guardarCambios" style="display:none">
-										<button id="guarda" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;Guardar</button>
-										<button id="cancelar" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Cancelar</button>
-										</div>
-								
-									<div style="text-align: center; display:none;" id="verEstado">
-									<br>
-									  <label style="font-size:150%" id="estado"></label>  
-									</div>
-								</div>
+            <a class="navbar-brand" href="#" style="width:80%;text-align:center;color:white;">M&eacute;dicoNet</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+					<a href="#" style="background:rgb(24,91,140);">Inicio
+					</a>
+				</li>               
+			</ul>            
+            <ul class="nav navbar-nav navbar-right">
+				<li>
+					 <p class="navbar-text" style="color:white;" id="nombre_usuario">Nobre de prueba</p>
+				</li>
+				<li>
+					<a href="salir.php" style="color:white;">Salir</a>
+				</li>
+						
+            </ul>
+               
+        </div>
+    </div>
+</nav>
+<div class="starter-template" style="text-align:center">
+	<br>
+	<div class="tab-content">
+		<div id="resultados" class="tab-pane fade in active">
+			<div class="centrado">
+				
+				<div class="panel panel-default" style="width: 50%; margin:6% auto 0 auto; ">
+					
+						<div class="panel panel-body" style="margin-bottom: 0px;">
+														  
+							<div id="usuario" style="display:none;    margin-bottom: 15px;">
+								<select id="unidad" data-width="100%" class="selectpicker" data-live-search="true" title='Selecciona un usuario...'>
+								</select>
+							</div>
+							
+							<div id="mes">
+								<select id="unidad" data-width="100%" class="selectpicker" data-live-search="true" title='Selecciona un mes...'>
+								</select>
+							</div>
+													
+							<div style="text-align: center; display:none;" id="verEstado">
+							<br>
+							  <label style="font-size:150%" id="estado"></label>  
 							</div>
 						</div>
-						
-						<table class="table table-bordered"style="margin-top: 20px;">
-							<thead >
-							  <tr class="info">
-								<th style="width:60%;">Reporte</th>
-								<th style="width:20%; text-align:center;">fecha</th>
-								<th style="width:20%; text-align:center;">Ver reporte</th>
-							  </tr>
-							</thead>
-							<tbody id="secciones">
-							  
-							</tbody>
-						</table>
-					
-					</form>
-					<br>
 					
 				</div>
-			</div>
-				 
+					
+					<table class="table table-bordered"style="margin-top: 20px;">
+						<thead >
+						  <tr class="info">
+							<th style="width:50%;">Reporte</th>
+							<th style="width:15%; text-align:center;">Registrado</th>
+							<th style="width:15%; text-align:center;">Editado</th>
+							<th style="width:20%; text-align:center;">Ver reporte</th>
+						  </tr>
+						</thead>
+						<tbody id="secciones">
+						  
+						</tbody>
+					</table>
+				
+				<br>
+				
 			</div>
 		</div>
+			 
+	</div>
+</div>
 
 	</div><!-- /.container -->
 

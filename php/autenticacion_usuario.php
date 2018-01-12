@@ -2,7 +2,11 @@
 
 if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 	
-  require_once 'configMySQL.php';
+	session_start();
+
+	$_SESSION = array();
+	
+	require_once 'configMySQL.php';
 
 	$conn = new mysqli($mysql_config['host'], $mysql_config['user'], $mysql_config['pass'], $mysql_config['db']);
 		// Check connection
@@ -16,14 +20,16 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
 	$returnJs = [];
 	$returnJs['registrado'] = false;
 				
-	$sql = "SELECT CONCAT(nombre,' ', a_paterno,' ', a_materno) as nombre, es_administrador as tipo from usuario where usuario = '{$usuario}' && contrasena = '{$contrasena}' && activo = 1";
+	$sql = "SELECT pk_usuario, CONCAT(nombre,' ', a_paterno,' ', a_materno) as nombre, es_administrador from usuario where usuario = '{$usuario}' && contrasena = '{$contrasena}' && activo = 1";
 										
 	$result = $conn->query($sql);
 	if ($result->num_rows == 1) {
 		
-		$returnJs = $result->fetch_assoc();
+		$row = $result->fetch_assoc();
 		$returnJs['registrado'] = true ;
 		$result->free();
+		$_SESSION['usuario'] = $row['pk_usuario'];
+		$_SESSION['tipo'] = $row['es_administrador'];
 	}
 					
 	echo json_encode($returnJs);

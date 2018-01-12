@@ -29,6 +29,8 @@ CREATE TABLE `actividad` (
   `solicito` varchar(200) NULL,
   `medio_solicitado` varchar(100) NULL,
   `editable` tinyint(4) default 1,
+  `finalizo` tinyint(4) NULL,
+  `motivo_retrazo` TEXT,
   `registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `editado` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pk_actividad`),
