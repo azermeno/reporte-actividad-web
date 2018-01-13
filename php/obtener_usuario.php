@@ -18,11 +18,11 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
 	
 	if($_SESSION['tipo'] == 1){//Es administrador
 		
-		$sql = "SELECT pk_usuario, CONCAT(nombre,' ', a_paterno,' ', a_materno) as nombre, es_administrador as tipo from usuario where activo = 1 && es_administrador = 0";
+		$sql = "SELECT pk_usuario as identificador, CONCAT(nombre,' ', a_paterno,' ', a_materno) as nombre, es_administrador as tipo from usuario where activo = 1 && es_administrador = 0";
 		
 	} else {
 		
-		$sql = "SELECT pk_usuario, CONCAT(nombre,' ', a_paterno,' ', a_materno) as nombre, es_administrador as tipo from usuario where pk_usuario ={$_SESSION['usuario']}";
+		$sql = "SELECT pk_usuario as identificador, CONCAT(nombre,' ', a_paterno,' ', a_materno) as nombre, es_administrador as tipo from usuario where pk_usuario ={$_SESSION['usuario']}";
 		
 	}
 										

@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION["tipo"]) && !isset($_SESSION["usuario"])) {
     header("Location: index.html"); /* Redirect browser */
-	echo "entro";
+	
 	exit();
 }
 ?>
@@ -69,18 +69,18 @@ if (!isset($_SESSION["tipo"]) && !isset($_SESSION["usuario"])) {
 						<div class="panel panel-body" style="margin-bottom: 0px;">
 														  
 							<div id="usuario" style="display:none;    margin-bottom: 15px;">
-								<select id="unidad" data-width="100%" class="selectpicker" data-live-search="true" title='Selecciona un usuario...'>
+								<select id="usuario_select" data-width="100%" class="selectpicker" data-live-search="true" title='Selecciona un usuario...'>
+								
 								</select>
 							</div>
 							
 							<div id="mes">
-								<select id="unidad" data-width="100%" class="selectpicker" data-live-search="true" title='Selecciona un mes...'>
+								<select id="mes_select" data-width="100%" class="selectpicker" data-live-search="true" title='Selecciona un mes...'>
 								</select>
 							</div>
 													
-							<div style="text-align: center; display:none;" id="verEstado">
-							<br>
-							  <label style="font-size:150%" id="estado"></label>  
+							<div style="text-align: center; margin-top: 12px" id="boton_nuevo">
+							<button id="nuevo" type="button" class="btn btn-info" data-accion="1" style="width:45%;text-align:center; color: black"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear reporte</button> 
 							</div>
 						</div>
 					
@@ -95,7 +95,7 @@ if (!isset($_SESSION["tipo"]) && !isset($_SESSION["usuario"])) {
 							<th style="width:20%; text-align:center;">Ver reporte</th>
 						  </tr>
 						</thead>
-						<tbody id="secciones">
+						<tbody id="reporte">
 						  
 						</tbody>
 					</table>

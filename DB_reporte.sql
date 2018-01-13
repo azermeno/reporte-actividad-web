@@ -23,20 +23,23 @@ use reporte;
 CREATE TABLE `actividad` (
   `pk_actividad` int(11) NOT NULL AUTO_INCREMENT,
   `fk_usuario` int(11) NOT NULL,
-  `descripcion_avance` TEXT,
-  `incidencia` varchar(15) NULL,
-  `resumen_problematica` TEXT,
-  `solicito` varchar(200) NULL,
-  `medio_solicitado` varchar(100) NULL,
-  `editable` tinyint(4) default 1,
-  `finalizo` tinyint(4) NULL,
-  `motivo_retrazo` TEXT,
+  `descripcion_avance` text,
+  `incidencia` varchar(15) DEFAULT NULL,
+  `resumen_problematica` text,
+  `solicito` varchar(200) DEFAULT NULL,
+  `medio_solicitado` varchar(100) DEFAULT NULL,
+  `editable` tinyint(4) DEFAULT '1',
   `registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `editado` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `editado` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `retraso` text,
+  `finalizo` tinyint(4) NOT NULL DEFAULT '0',
+  `porcentaje` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`pk_actividad`),
   KEY `fk_usuario` (`fk_usuario`),
   CONSTRAINT `actividad_usuario` FOREIGN KEY (`fk_usuario`) REFERENCES `usuario` (`pk_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  
+  
 
 CREATE TABLE `adjunto` (
   `pk_adjunto` int(11) NOT NULL AUTO_INCREMENT,
