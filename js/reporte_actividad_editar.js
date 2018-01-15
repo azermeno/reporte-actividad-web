@@ -1,3 +1,18 @@
+function getQueryVariable(variable) {
+	alert("Entro");
+   var query = window.location.search.substring(1);
+   var vars = atob(query).split("&");
+   console.log(vars);
+   for (var i=0; i < vars.length; i++) {
+	   vars[i] = vars[i].replace(/=/, "|");
+	   var pair = vars[i].split("|",2);
+	   if(pair[0] == variable) {
+		   return pair[1];
+	   }
+   }
+   return false;
+}	
+
 function obtener_catalogo_hora(){
 
 	$.ajax({
@@ -7,7 +22,7 @@ function obtener_catalogo_hora(){
 	}).done(function(data){
 		var thead ='<tr>';
 		var tbody ='<tr>';
-		console.log(data);
+		//console.log(data);
 		data.actividades.forEach(function(entry){
 		 
 			thead += '<th>'+entry.nombre_actividad+'<th>';
@@ -37,8 +52,9 @@ function regresar(){
 
 $(function(){
 	
-    
 	obtener_catalogo_hora();
+     var referencia = getQueryVariable("referencia");
+	 console.log(referencia);
 	
 	$("#cancelar").on('click',regresar);
 	

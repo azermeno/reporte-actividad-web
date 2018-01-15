@@ -117,9 +117,13 @@ function llenar_tabla(reporte){
 	var fila = "";
 	 $("#reporte").empty();
 	console.log(reporte);
+	var referencia = '';
 	 reporte.forEach(function(entry){
 		 
-			fila += '<tr class="active"><td><b>'+entry.descripcion_avance+'</b></td><td><b>'+entry.registro+'</b></td><td><b>'+entry.editado+'</b></td><td><button id="ver'+entry.pk_actividad+'" type="button" class="btn btn-info actualizar" data-codigo="'+entry.pk_actividad+'" data-accion="1" style="width:45%;text-align:center; color: black"><span class="glyphicon glyphicon-share" aria-hidden="true"></span></button></td></tr>';
+			referencia = btoa("referencia="+entry.pk_actividad);
+		 
+			// fila += '<tr class="active"><td><b>'+entry.descripcion_avance+'</b></td><td><b>'+entry.registro+'</b></td><td><b>'+entry.editado+'</b></td><td><button id="ver'+entry.pk_actividad+'" type="button" class="btn btn-info actualizar" data-codigo="'+entry.pk_actividad+'" data-accion="1" style="width:45%;text-align:center; color: black"><span class="glyphicon glyphicon-share" aria-hidden="true"></span></button></td></tr>';
+			fila += '<tr class="active"><td><b>'+entry.descripcion_avance+'</b></td><td><b>'+entry.registro+'</b></td><td><b>'+entry.editado+'</b></td><td><a class="btn btn-primary" href="reporte_actividad_editar.php?'+referencia+'" role="button"><span class="glyphicon glyphicon-share" aria-hidden="true"></span></a></td></tr>';
 		 					
 	  });
 					 
